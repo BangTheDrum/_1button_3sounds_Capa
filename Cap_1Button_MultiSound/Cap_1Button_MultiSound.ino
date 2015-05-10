@@ -15,7 +15,7 @@ WaveHC wave;      // This is the only wave (audio) object, since we will only pl
 
 #define DEBOUNCE 5  // button debouncer
 
-/*
+
 // here is where we define the ANALOGIN2 that we'll use. button "1" is the first, button "6" is the 6th, etc
 byte ANALOGIN2 = 15;
 //original ANALOGIN2
@@ -24,10 +24,6 @@ byte ANALOGIN2 = 15;
 #define NUMANALOGIN2 sizeof(ANALOGIN2)
 // we will track if a button is just pressed, just released, or 'pressed' (the current state
 volatile byte pressed[NUMANALOGIN2], justpressed[NUMANALOGIN2], justreleased[NUMANALOGIN2];
-
-*/
-
-volatile byte pressed[1], justpressed[1], justreleased[1];
 
 // this handy function will return the number of bytes currently free in RAM, great for debugging!
 int freeRam(void)
@@ -86,20 +82,21 @@ char* sound13 = "Track013.WAV";
 char* sound14 = "Track014.WAV";
 char* sound15 = "Track015.WAV";
 char* sound16 = "Track016.WAV";
-char* sound217 = "Track17.WAV";
+char* sound17 = "Track17.WAV";
 char* sound18 = "Track18.WAV";
 char* sound19 = "Track019.WAV";
 
-//char sound4 = "xxxx";
+
 
 //Makes a list of all of the sounds to cycle through
 //THe star is to make it a pointer, not sure if I need that??
-char* soundList[] = {sound1, sound2, sound3};
+char* soundList[] = {sound1, sound2, sound3, sound4, sound5, sound6, sound7, sound8, sound9, sound10, sound11, sound12, sound13, sound14, sound15, sound16, sound17, sound18, sound19};
 char* currentSound = soundList[0];
 
 /////////////////////////////////////////////////////////////////////
 
 void setup() {
+
   byte i;
   // set up serial port
   Serial.begin(9600);
@@ -193,36 +190,32 @@ void check_switches(){
   Serial.println(sensorValue);
   
   //currentstate[index] = digitalRead(buttons[index]); 
-  
 
-  
-  
-  
   if (sensorValue > threshold){
     pressed[0] = 1;
   } else {
     pressed[0] = 0;
   }
-  
-      if (currentstate[index] == previousstate[index]) {
-      if ((pressed[index] == LOW) && (currentstate[index] == LOW)) {
-        // just pressed
-        justpressed[index] = 1;
-      }
-      else if ((pressed[index] == HIGH) && (currentstate[index] == HIGH)) {
-        // just released
-        justreleased[index] = 1;
-      }
-      pressed[index] = !currentstate[index];  // remember, digital HIGH means NOT pressed
-    }
-    //Serial.println(pressed[index], DEC);
-    previousstate[index] = currentstate[index];   // keep a running tally of the buttons
+
+//       if (currentstate[index] == previousstate[index]) {
+//       if ((pressed[index] == LOW) && (currentstate[index] == LOW)) {
+//         // just pressed
+//         justpressed[index] = 1;
+//       }
+//       else if ((pressed[index] == HIGH) && (currentstate[index] == HIGH)) {
+//         // just released
+//         justreleased[index] = 1;
+//       }
+//       pressed[index] = !currentstate[index];  // remember, digital HIGH means NOT pressed
+//     }
+//     //Serial.println(pressed[index], DEC);
+//     previousstate[index] = currentstate[index];   // keep a running tally of the buttons
 }
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 void loop() {
   check_switches();
-  
+
   byte i;
   if ( pressed[0] ) {
     Serial.println("sensor was triggered");
@@ -233,7 +226,7 @@ void loop() {
     }
     wave.stop();
     que = que + 1;
-    if ( que == 3 ){
+    if ( que == sizeof(soundList)){
       que = 0;
     }
     //assign the sound according to the que
