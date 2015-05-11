@@ -70,25 +70,25 @@ int threshold = 30;
 // keep track of the que
 int que = 0;
 //Makes a list of all of the sounds to cycle through
-const char sound1[] PROGMEM= "Track01.WAV";
-const char sound2[] PROGMEM = "Track02.WAV";
-const char sound3[] PROGMEM = "Track03.WAV";
-const char sound4[] PROGMEM = "Track04.WAV";
-const char sound5[] PROGMEM = "Track05.WAV";
-const char sound6[] PROGMEM = "Track06.WAV";
-const char sound7[] PROGMEM = "Track07.WAV";
-const char sound8[] PROGMEM = "Track08.WAV";
-const char sound9[] PROGMEM = "Track09.WAV";
-const char sound10[] PROGMEM = "Track10.WAV";
-const char sound11[] PROGMEM = "Track11.WAV";
-//const char sound12[] PROGMEM = "Track012.WAV";
-//const char sound13[] PROGMEM = "Track013.WAV";
-//const char sound14[] PROGMEM = "Track014.WAV";
-//const char sound15[] PROGMEM = "Track015.WAV";
-//const char sound16[] PROGMEM = "Track016.WAV";
-//const char sound17[] PROGMEM = "Track17.WAV";
-//const char sound18[] PROGMEM = "Track18.WAV";
-//const char sound19[] PROGMEM = "Track019.WAV";
+const char sound1[] = "Track01.WAV";
+const char sound2[]  = "Track02.WAV";
+const char sound3[]  = "Track03.WAV";
+const char sound4[]  = "Track04.WAV";
+const char sound5[]  = "Track05.WAV";
+const char sound6[]  = "Track06.WAV";
+const char sound7[]  = "Track07.WAV";
+const char sound8[]  = "Track08.WAV";
+const char sound9[]  = "Track09.WAV";
+const char sound10[]  = "Track10.WAV";
+const char sound11[]  = "Track11.WAV";
+//const char sound12[]  = "Track012.WAV";
+//const char sound13[]  = "Track013.WAV";
+//const char sound14[]  = "Track014.WAV";
+//const char sound15[]  = "Track015.WAV";
+//const char sound16[]  = "Track016.WAV";
+//const char sound17[]  = "Track17.WAV";
+//const char sound18[]  = "Track18.WAV";
+//const char sound19[]  = "Track019.WAV";
 //THe star is to make it a pointer, not sure if I need that??
 const char* soundList[] = {sound1, sound2, sound3, sound4, sound5, sound6, sound7, sound8, sound9, sound10, sound11};
 
@@ -224,7 +224,7 @@ void loop() {
   
 //    for (int i = 1; i < 19; ++i)
 //      {
-//        const char soundList[i] PROGMEM = "Track" + i + ".WAV";
+//        const char soundList[i]  = "Track" + i + ".WAV";
 //        return soundList;
 //      }
 
