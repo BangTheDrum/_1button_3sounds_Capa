@@ -4,6 +4,7 @@
 #include "WaveUtil.h"
 #include "WaveHC.h"
 #include <CapacitiveSensor.h>
+#include <AVDFlash.h>
 
 
 
@@ -69,32 +70,35 @@ int threshold = 30;
 // keep track of the que
 int que = 0;
 //string to the sound paths
-char* sound1 = "Track01.WAV";
-char* sound2 = "Track02.WAV";
-char* sound3 = "Track03.WAV";
-char* sound4 = "Track04.WAV";
-char* sound5 = "Track05.WAV";
-char* sound6 = "Track06.WAV";
-char* sound7 = "Track07.WAV";
-char* sound8 = "Track08.WAV";
-char* sound9 = "Track09.WAV";
-char* sound10 = "Track10.WAV";
-char* sound11 = "Track11.WAV";
-char* sound12 = "Track012.WAV";
-char* sound13 = "Track013.WAV";
-char* sound14 = "Track014.WAV";
-char* sound15 = "Track015.WAV";
-char* sound16 = "Track016.WAV";
-char* sound17 = "Track17.WAV";
-char* sound18 = "Track18.WAV";
-char* sound19 = "Track019.WAV";
+//const char sound1[] PROGMEM= "Track01.WAV";
+//const char sound2[] PROGMEM = "Track02.WAV";
+//const char sound3[] PROGMEM = "Track03.WAV";
+//const char sound4[] PROGMEM = "Track04.WAV";
+//const char sound5[] PROGMEM = "Track05.WAV";
+//const char sound6[] PROGMEM = "Track06.WAV";
+//const char sound7[] PROGMEM = "Track07.WAV";
+//const char sound8[] PROGMEM = "Track08.WAV";
+//const char sound9[] PROGMEM = "Track09.WAV";
+//const char sound10[] PROGMEM = "Track10.WAV";
+//const char sound11[] PROGMEM = "Track11.WAV";
+//const char sound12[] PROGMEM = "Track012.WAV";
+//const char sound13[] PROGMEM = "Track013.WAV";
+//const char sound14[] PROGMEM = "Track014.WAV";
+//const char sound15[] PROGMEM = "Track015.WAV";
+//const char sound16[] PROGMEM = "Track016.WAV";
+//const char sound17[] PROGMEM = "Track17.WAV";
+//const char sound18[] PROGMEM = "Track18.WAV";
+//const char sound19[] PROGMEM = "Track019.WAV";
+
+
+
 
 
 
 //Makes a list of all of the sounds to cycle through
 //THe star is to make it a pointer, not sure if I need that??
-char* soundList[] = {sound1, sound2, sound3, sound4, sound5, sound6, sound7, sound8, sound9, sound10, sound11, sound12, sound13, sound14, sound15, sound16, sound17, sound18, sound19};
-char* currentSound = soundList[0];
+//char* soundList[] = {sound1, sound2, sound3, sound4, sound5, sound6, sound7, sound8, sound9, sound10, sound11, sound12, sound13, sound14, sound15, sound16, sound17, sound18, sound19};
+
 
 #define randomHatStartNum 0
 int randomHatEndNum = sizeof(soundList);
@@ -104,6 +108,7 @@ int i, x;
 /////////////////////////////////////////////////////////////////////
 
 void setup() {
+
 
   byte i;
   // set up serial port
@@ -219,9 +224,20 @@ void check_switches(){
 //     //Serial.println(pressed[index], DEC);
 //     previousstate[index] = currentstate[index];   // keep a running tally of the buttons
 }
+char* currentSound;
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 void loop() {
+  
+    for (int i = 1; i < 19; ++i)
+      {
+        const char soundList[i] PROGMEM = "Track" + i + ".WAV";
+        return soundList;
+      }
+
+
+
+
   check_switches();
   
   if ( pressed[0] ) {
@@ -237,7 +253,9 @@ void loop() {
 //      que = 0;
 //    }
     //assign the sound according to the que
-    currentSound = soundList[randomHat()];
+    
+    
+    currentSound = readFlash(soundList[randomHat()]);
   }
   wave.stop();
 }
